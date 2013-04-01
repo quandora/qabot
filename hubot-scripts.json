@@ -1,2 +1,1 @@
-["redis-brain.coffee", "tweet.coffee", "shipit.coffee", "jira-issues.coffee",
- "ascii.coffee", "bit.ly"]
+["redis-brain.coffee", "tweet.coffee", "shipit.coffee"]
