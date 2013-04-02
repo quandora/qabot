@@ -13,7 +13,7 @@
 #
 # Commands:
 #   hubot (q|ask|quandora query) <text> - search text in Quandora
-#   hubot q <n> - display question <n> after a search
+#   hubot qs <n> - display question <n> after a search
 #   hubot (qd|quandora domain) - display configured quandora domain
 #
 # Author:
@@ -34,7 +34,7 @@ else
 
 
 module.exports = (robot) ->
-    robot.respond /(ask|q|quandora query) (.+)/i, (msg) -> 
+    robot.respond /(ask|qs|quandora query) (.+)/i, (msg) -> 
         question = msg.match[2]
         msg.http(api_url + "/search")
             .headers("Authorization": api_auth)
