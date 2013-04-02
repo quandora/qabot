@@ -12,7 +12,9 @@
 #   HUBOT_QUANDORA_API_URL //not yet used
 #
 # Commands:
-#   hubot ask <question> - search about this question in quandora
+#   hubot (q|ask|quandora query) <text> - search text in Quandora
+#   hubot q <n> - display question <n> after a search
+#   hubot (qd|quandora domain) - display configured quandora domain
 #
 # Author:
 #   b6
@@ -32,7 +34,7 @@ else
 
 
 module.exports = (robot) ->
-    robot.respond /(ask|q|qdra) (.+)/i, (msg) -> 
+    robot.respond /(ask|q|quandora query) (.+)/i, (msg) -> 
         question = msg.match[2]
         msg.http(api_url + "/search")
             .headers("Authorization": api_auth)
@@ -63,7 +65,7 @@ module.exports = (robot) ->
         else
             msg.send("Can't find question #{i + 1}")
 
-    robot.respond /(quandora|q) domain/i, (msg) -> 
+    robot.respond /(quandora domain|qd)/i, (msg) -> 
         msg.send("Quandora Domain: #{quandora_domain}")
 
 
