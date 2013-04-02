@@ -18,7 +18,16 @@
 #   b6
 
 api_url = "https://#{process.env.HUBOT_QUANDORA_DOMAIN}.quandora.com/m/json"
-api_auth = "Basic " + new Buffer(process.env.HUBOT_QUANDORA_USER+':'+process.env.HUBOT_QUANDORA_PASSWD).toString('base64')
+auth_user = process.env.HUBOT_QUANDORA_USER or ""
+auth_passwd = process.env.HUBOT_QUANDORA_PASSWD or ""
+if (auth_user && auth_passwd)
+    api_auth = "Basic " + new Buffer(api_user + ':' + api_passwd).toString('base64')
+    console.log("Quandora: Got Auth Data, going as " + api_user)
+else
+    console.log("No auth data: going anonymous")
+    api_auth = ""
+
+console.warn("Quandora: no domain defined, you need to set HUBOT_QUANDORA_DOMAIN to your domain") if !process.env.HUBOT_QUANDORA_DOMAIN
 
 module.exports = (robot) ->
     robot.respond /(ask|qa|qdra) (.+)/i, (msg) -> 
